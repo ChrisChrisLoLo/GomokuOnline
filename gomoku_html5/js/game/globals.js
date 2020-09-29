@@ -1,8 +1,5 @@
 // Character constants. Emoji used for easier debugging.
-const WHITE = 'W';
-const BLACK = 'B';
-const EMPTY = ' ';
-const SEARCHED = '*';
+
 
 const STARTING_COLOR = BLACK;
 
