@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import {generateBoardArray} from '../../logic/gameLogic';
 import Board from './Board';
 import Score from "./Score";
+import Message from "./Message";
 
 const WHITE = 'W';
 const BLACK = 'B';
@@ -60,11 +61,13 @@ export default function Game() {
             });
 
             if(isWinningMove(i,j,newBoard,true)){
-                if (playingColor == BLACK){
+                if (playingColor === BLACK){
                     setBlackScore(blackScore + 1);
+                    sendPrompt('Black wins!');
                 }
                 else {
                     setWhiteScore(whiteScore + 1);
+                    sendPrompt('White wins!');
                 }
                 resetGame();
             }
@@ -191,7 +194,7 @@ export default function Game() {
         <div>
             <Score blackScore={blackScore} whiteScore={whiteScore} playingColor={playingColor}/>
             <Board board={board} playMove={playMove}/>
-            {/*<Message/>*/}
+            <Message message={message}/>
             {/*<Settings/>*/}
         </div>
     );
