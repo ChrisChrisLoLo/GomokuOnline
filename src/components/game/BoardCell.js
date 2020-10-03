@@ -1,4 +1,5 @@
 import React from "react";
+import "./BoardCell.css";
 
 export default function BoardCell(props) {
 
@@ -19,13 +20,17 @@ export default function BoardCell(props) {
 
     let cellStyle = {
         backgroundColor:cellColor,
-        height:'50px',
-        width:'50px',
-        borderRadius:'50px'
+        height:'100%',
+        width:'100%',
+        borderRadius:'50px',
+        '&:hover': {
+            width:'1000px',
+            cursor: 'pointer',
+        },
     };
 
     return (
-        <div style={cellStyle} onClick={()=>{props.playMove(props.i, props.j)}}>
+        <div className={'boardCell'} style={cellStyle} onClick={()=>{props.playMove(props.i, props.j)}}>
         </div>
     );
 }
