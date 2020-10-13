@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import {generateBoardArray} from '../../logic/gameLogic';
+import { generateBoardArray } from '../../logic/gameLogic';
 import Board from './Board';
 import Score from "./Score";
 import Message from "./Message";
+import gameStyle from './Game.module.css'
 
 const WHITE = 'W';
 const BLACK = 'B';
@@ -30,7 +31,7 @@ export default function Game() {
      * Copies the board.
      * @returns {[string][]}
      */
-    function copyBoard(board){
+    function copyBoard(board) {
         return board.map(arr => arr.slice());
     }
 
@@ -40,28 +41,29 @@ export default function Game() {
      * @param j the 0 indexed col position
      * @returns {number} 0 if the move is valid, -1 if the move is invalid, and 1 if the player won
      */
-    function playMove(i,j){
+    function playMove(i, j) {
         console.log(`Turn ${turnNumber}: ${playingColor}'s move`);
         let newBoard = copyBoard(board);
-        if (newBoard[i][j] !== EMPTY){
+        if (newBoard[i][j] !== EMPTY) {
             sendPrompt('Cannot place your piece where one already exists!');
             return -1;
         }
         newBoard[i][j] = playingColor;
-        let brokenRules = giveBrokenRules(i,j,newBoard);
-        if (brokenRules.length !== 0){
+        let brokenRules = giveBrokenRules(i, j, newBoard);
+        if (brokenRules.length !== 0) {
             sendPrompt(`Broke the following rules: ${brokenRules}`);
             return -1;
         }
-        else{
+        else {
             setBoard(newBoard);
+            setMessage('');
 
-            board.forEach((row)=>{
+            board.forEach((row) => {
                 console.log(row);
             });
 
-            if(isWinningMove(i,j,newBoard,true)){
-                if (playingColor === BLACK){
+            if (isWinningMove(i, j, newBoard, true)) {
+                if (playingColor === BLACK) {
                     setBlackScore(blackScore + 1);
                     sendPrompt('Black wins!');
                 }
@@ -71,8 +73,8 @@ export default function Game() {
                 }
                 resetGame();
             }
-            else{
-                setPlayingColor(playingColor===BLACK?WHITE:BLACK);
+            else {
+                setPlayingColor(playingColor === BLACK ? WHITE : BLACK);
                 setTurnNumber(turnNumber + 1);
                 return 0
             }
@@ -82,7 +84,7 @@ export default function Game() {
      * Return broken rules
      * @returns {Array}
      */
-    function giveBrokenRules(i,j,board) {
+    function giveBrokenRules(i, j, board) {
         return []
     }
 
@@ -94,15 +96,15 @@ export default function Game() {
      * @param isOverlineAllowed determines if lines of # pieces > N are allowed.
      * @returns {boolean}
      */
-    function isWinningMove(i,j,board,isOverlineAllowed=false) {
-        const directions = ['\\','|','-','/'];
+    function isWinningMove(i, j, board, isOverlineAllowed = false) {
+        const directions = ['\\', '|', '-', '/'];
         let isWinning = false;
-        directions.forEach((dir)=>{
+        directions.forEach((dir) => {
             let lineCount = countLine(dir, copyBoard(board), i, j, playingColor);
-            if (isOverlineAllowed && lineCount >= winningPieceCount){
+            if (isOverlineAllowed && lineCount >= winningPieceCount) {
                 isWinning = true;
             }
-            else if (!isOverlineAllowed && lineCount === winningPieceCount){
+            else if (!isOverlineAllowed && lineCount === winningPieceCount) {
                 isWinning = true;
             }
         });
@@ -119,7 +121,7 @@ export default function Game() {
      * @returns {number}
      */
     function countLine(dir, mutGrid, i, j, expPiece) {
-        if (mutGrid[i][j] !== expPiece){
+        if (mutGrid[i][j] !== expPiece) {
             return 0;
         }
 
@@ -134,35 +136,35 @@ export default function Game() {
 
         switch (dir) {
             case '/':
-                if (i-1 >= 0 && j+1 <= m) {
-                    count += countLine(dir, mutGrid, i-1, j+1, expPiece);
+                if (i - 1 >= 0 && j + 1 <= m) {
+                    count += countLine(dir, mutGrid, i - 1, j + 1, expPiece);
                 }
-                if (i+1 <= n && j-1 >= 0) {
-                    count += countLine(dir, mutGrid, i+1, j-1, expPiece);
+                if (i + 1 <= n && j - 1 >= 0) {
+                    count += countLine(dir, mutGrid, i + 1, j - 1, expPiece);
                 }
                 break;
             case '\\':
-                if (i+1 <= n && j+1 <= m) {
-                    count += countLine(dir, mutGrid, i+1, j+1, expPiece);
+                if (i + 1 <= n && j + 1 <= m) {
+                    count += countLine(dir, mutGrid, i + 1, j + 1, expPiece);
                 }
-                if (i-1 >= 0 && j-1 >= 0) {
-                    count += countLine(dir, mutGrid, i-1, j-1, expPiece);
+                if (i - 1 >= 0 && j - 1 >= 0) {
+                    count += countLine(dir, mutGrid, i - 1, j - 1, expPiece);
                 }
                 break;
             case '-':
-                if (j+1 <= m) {
-                    count += countLine(dir, mutGrid, i, j+1, expPiece);
+                if (j + 1 <= m) {
+                    count += countLine(dir, mutGrid, i, j + 1, expPiece);
                 }
-                if (j-1 >= 0) {
-                    count += countLine(dir, mutGrid, i, j-1, expPiece);
+                if (j - 1 >= 0) {
+                    count += countLine(dir, mutGrid, i, j - 1, expPiece);
                 }
                 break;
             case '|':
-                if (i+1 <= m) {
-                    count += countLine(dir, mutGrid, i+1, j, expPiece);
+                if (i + 1 <= m) {
+                    count += countLine(dir, mutGrid, i + 1, j, expPiece);
                 }
-                if (i-1 >= 0) {
-                    count += countLine(dir, mutGrid, i-1, j, expPiece);
+                if (i - 1 >= 0) {
+                    count += countLine(dir, mutGrid, i - 1, j, expPiece);
                 }
                 break;
             default:
@@ -174,7 +176,7 @@ export default function Game() {
     /**
      * Reset game
      */
-    function resetGame(){
+    function resetGame() {
         setPlayingColor(BLACK);
         setTurnNumber(0);
         setBoard(generateBoardArray(boardSize));
@@ -185,16 +187,25 @@ export default function Game() {
      * Will do more than logging in the near future.
      * @param message: The message to display to the user
      */
-    function sendPrompt(message){
+    function sendPrompt(message) {
         console.log(message);
         setMessage(message);
     }
 
     return (
         <div>
-            <Score blackScore={blackScore} whiteScore={whiteScore} playingColor={playingColor}/>
-            <Board board={board} playMove={playMove}/>
-            <Message message={message}/>
+            <div className={gameStyle.sidePanel}>
+                <Score blackScore={blackScore} whiteScore={whiteScore} playingColor={playingColor} />
+                <Message message={message} />
+            </div>
+
+            <Board board={board} playMove={playMove} />
+            
+            <div className={gameStyle.sidePanel}>
+                Settings/Rules go here
+            </div>
+            
+            
             {/*<Settings/>*/}
         </div>
     );

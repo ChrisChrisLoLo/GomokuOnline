@@ -1,0 +1,21 @@
+.stone{
+width: 100px;
+height: 100px;
+margin-left: 20px;
+}
+
+.score{
+    font-size: 50px;
+    text-align: center;
+}
+
+.numberScore{
+    font-size: 50px;
+    display: inline-block;
+    margin-left: 80px;
+}
+
+.scoreBox{
+    display: flex;
+    align-items:center;
+}

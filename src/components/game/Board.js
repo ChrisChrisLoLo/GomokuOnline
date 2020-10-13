@@ -11,7 +11,8 @@ export default function Board(props) {
         gridGap: 0,
         backgroundColor: 'maroon',
         height: '50vw',
-        width: '50vw'
+        width: '50vw',
+        float: 'left'
     };
 
     const grid = [];
