@@ -1,0 +1,33 @@
+.boardCell:hover{
+    cursor: pointer;
+}
+
+.cross {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    opacity: 0.9;
+    background-color: goldenrod;
+    border-radius: 50px;
+ }
+ 
+ .cross:before, .cross:after {
+   content: "";
+   position: absolute;
+   z-index: -1;
+   background: black;
+ }
+ 
+ .cross:before {
+   left: 50%;
+   width: 3%;
+   margin-left: -2%;
+   height: 100%;
+ }
+ 
+ .cross:after {
+   top: 50%;
+   height: 3%;
+   margin-top: -2%;
+   width: 100%;
+ }

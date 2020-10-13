@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import BoardCell from "./BoardCell";
 
 // board, setBoard
@@ -9,19 +9,19 @@ export default function Board(props) {
         gridTemplateColumns: `repeat(${props.board.length}, 1fr)`,
         gridTemplateRows: `repeat(${props.board.length}, 1fr)`,
         gridGap: 0,
-        backgroundColor: 'maroon',
+        backgroundColor: 'goldenrod',
         height: '50vw',
         width: '50vw',
         float: 'left'
     };
 
     const grid = [];
-    for (let i = 0; i < props.board.length ; i++){
+    for (let i = 0; i < props.board.length; i++) {
         let row = [];
         for (let j = 0; j < props.board.length; j++) {
             const cell =
-                <div style={{ gridRow:i+1, gridColumn:j+1 , width:'1fr', height:'1fr'}} key={`${i}_${j}`}>
-                    <BoardCell i={i} j={j} color={props.board[i][j]} playMove={props.playMove}/>
+                <div style={{ gridRow: i + 1, gridColumn: j + 1, width: '1fr', height: '1fr' }} key={`${i}_${j}`}>
+                    <BoardCell i={i} j={j} color={props.board[i][j]} playMove={props.playMove} />
                 </div>;
             row.push(cell);
         }
