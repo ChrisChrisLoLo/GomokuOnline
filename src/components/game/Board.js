@@ -21,7 +21,7 @@ export default function Board(props) {
         for (let j = 0; j < props.board.length; j++) {
             const cell =
                 <div style={{ gridRow: i + 1, gridColumn: j + 1, width: '1fr', height: '1fr' }} key={`${i}_${j}`}>
-                    <BoardCell i={i} j={j} color={props.board[i][j]} playMove={props.playMove} />
+                    <BoardCell i={i} j={j} color={props.board[i][j]} playMove={props.playMove} playingColor={props.playingColor}/>
                 </div>;
             row.push(cell);
         }

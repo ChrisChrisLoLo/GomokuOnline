@@ -233,7 +233,7 @@ export default function Game() {
                 <Message message={message} />
             </div>
 
-            <Board board={board} playMove={playMove} />
+            <Board board={board} playMove={playMove} playingColor={playingColor}/>
             
             <div className={gameStyle.sidePanel}>
                 <Settings resetGame={resetGame} board={board} configureGame={configureGame}/>
