@@ -3,6 +3,7 @@ import { generateBoardArray } from '../../logic/gameLogic';
 import Board from './Board';
 import Score from "./Score";
 import Message from "./Message";
+import Settings from "./Settings";
 import gameStyle from './Game.module.css'
 
 const WHITE = 'W';
@@ -202,11 +203,8 @@ export default function Game() {
             <Board board={board} playMove={playMove} />
             
             <div className={gameStyle.sidePanel}>
-                Settings/Rules go here
+                <Settings resetGame={resetGame}/>
             </div>
-            
-            
-            {/*<Settings/>*/}
         </div>
     );
 }
