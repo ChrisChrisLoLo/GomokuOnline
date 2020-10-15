@@ -86,6 +86,10 @@ export default function Game() {
                 }
                 resetGame(newBoard.length);
             }
+            else if (isDraw(newBoard)){
+                sendPrompt('It\'s a draw!');
+                resetGame(newBoard.length);
+            }
             else {
                 setPlayingColor(playingColor === BLACK ? WHITE : BLACK);
                 setTurnNumber(turnNumber + 1);
@@ -93,6 +97,23 @@ export default function Game() {
             }
         }
     }
+
+    /**
+     * Checks if the board is in a draw state (no more empty pieces)
+     * @param board
+     */
+    function isDraw(board){
+        let isBoardFilled = true;
+        for (let i = 0; i < board.length; i++){
+            for (let j = 0; j < board.length; j++){
+                if (board[i][j] === EMPTY){
+                    isBoardFilled = false;
+                }
+            }
+        }
+        return isBoardFilled;
+    }
+
     /**
      * Return broken rules
      * @returns {Array}
