@@ -4,6 +4,7 @@ import boardCellStyle from './BoardCell.module.css';
 export default function BoardCell(props) {
 
     let cellColor;
+    let className = [];
     switch (props.color) {
         case 'W':
             cellColor = 'white';
@@ -13,6 +14,7 @@ export default function BoardCell(props) {
             break;
         case ' ':
             cellColor = 'goldenrod';
+            className = [boardCellStyle.cross];
             break;
         default:
             console.error('invalid board color')
@@ -30,7 +32,7 @@ export default function BoardCell(props) {
     };
 
     return (
-        <div className={[boardCellStyle.cross]} style={cellStyle} onClick={() => { props.playMove(props.i, props.j) }}>
+        <div className={className} style={cellStyle} onClick={() => { props.playMove(props.i, props.j) }}>
         </div>
     );
 }
