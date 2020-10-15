@@ -6,15 +6,20 @@ import { gameModes } from "../../logic/gameModes";
 export default function Settings(props) {
     let options = [];
     for (let gameModeName in gameModes){
-        options.push(<option>{gameModeName}</option>)
+        options.push(<option key={gameModeName}>{gameModeName}</option>)
     }
+
+    function handleChange(e){
+        props.configureGame(gameModes[e.target.value]);
+    }
+
     return (
         <div>
             <h4>Options</h4>
-            <Button onClick={props.resetGame}>Reset</Button>
+            <Button onClick={() => props.resetGame(props.board.length)}>Reset</Button>
 
             <h4>Game configuration</h4>
-            <Input type='select' name='gameMode' >
+            <Input type='select' name='gameMode' onChange={handleChange}>
                 {options}
             </Input>
         </div>

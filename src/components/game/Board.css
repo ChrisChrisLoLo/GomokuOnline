@@ -1,16 +1,4 @@
 /*from https://stackoverflow.com/questions/57550082/creating-a-16x16-grid-using-javascript*/
-:root {
-    --grid-cols: 15;
-    --grid-rows: 15;
-}
-
-#container {
-    display: grid;
-    grid-gap: 1em;
-    grid-template-rows: repeat(var(--grid-rows), 1fr);
-    grid-template-columns: repeat(var(--grid-cols), 1fr);
-}
-
 .grid-item {
     padding: 1em;
     border: 1px solid #ddd;

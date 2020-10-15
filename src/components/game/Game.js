@@ -15,18 +15,30 @@ export default function Game() {
 
     // Game config
     const [winningPieceCount, setWinningPieceCount] = useState(5);
-    const [boardSize, setBoardSize] = useState(15);
-
+    // const [boardSize, setBoardSize] = useState(15);
+    const [isOverlineAllowed, setIsOverlineAllowed] = useState( true);
+    const [rules, setRules] = useState([]);
     // Game state
     const [blackScore, setBlackScore] = useState(0);
     const [whiteScore, setWhiteScore] = useState(0);
     const [playingColor, setPlayingColor] = useState(BLACK);
     // used to communicate information to player
     const [message, setMessage] = useState('');
-    const [board, setBoard] = useState(generateBoardArray(boardSize));
+    const [board, setBoard] = useState(generateBoardArray(15));
     // turn number (used for rules and even for history recording). Starts at 0
     const [turnNumber, setTurnNumber] = useState(0);
 
+    /**
+     * Configures the game according to the selected gameMode.
+     * gameMode JSON schema can be found in logic/gameModes.js
+     * @param gameMode the passed in gameMode JSON object
+     */
+    function configureGame(gameMode) {
+        setRules(gameMode.rules);
+        setIsOverlineAllowed(gameMode.isOverlineAllowed);
+        setWinningPieceCount(gameMode.winningPieceCount);
+        resetGame(gameMode.boardSize);
+    }
 
     /**
      * Copies the board.
@@ -63,7 +75,7 @@ export default function Game() {
                 console.log(row);
             });
 
-            if (isWinningMove(i, j, newBoard, true)) {
+            if (isWinningMove(i, j, newBoard)) {
                 if (playingColor === BLACK) {
                     setBlackScore(blackScore + 1);
                     sendPrompt('Black wins!');
@@ -72,7 +84,7 @@ export default function Game() {
                     setWhiteScore(whiteScore + 1);
                     sendPrompt('White wins!');
                 }
-                resetGame();
+                resetGame(newBoard.length);
             }
             else {
                 setPlayingColor(playingColor === BLACK ? WHITE : BLACK);
@@ -94,10 +106,9 @@ export default function Game() {
      * @param i
      * @param j
      * @param board
-     * @param isOverlineAllowed determines if lines of # pieces > N are allowed.
      * @returns {boolean}
      */
-    function isWinningMove(i, j, board, isOverlineAllowed = false) {
+    function isWinningMove(i, j, board) {
         const directions = ['\\', '|', '-', '/'];
         let isWinning = false;
         directions.forEach((dir) => {
@@ -114,7 +125,7 @@ export default function Game() {
 
     /**
      * Count the number of pieces of a given position
-     * @param dir determines the line we are counting the peices of
+     * @param dir determines the line we are counting the pieces of
      * @param mutGrid is a grid we are willing to mutate. Used for recursive DFS
      * @param i
      * @param j
@@ -176,8 +187,9 @@ export default function Game() {
 
     /**
      * Reset game
+     * @param boardSize: The size of the board to reset to
      */
-    function resetGame() {
+    function resetGame(boardSize) {
         setPlayingColor(BLACK);
         setTurnNumber(0);
         setBoard(generateBoardArray(boardSize));
@@ -203,7 +215,7 @@ export default function Game() {
             <Board board={board} playMove={playMove} />
             
             <div className={gameStyle.sidePanel}>
-                <Settings resetGame={resetGame}/>
+                <Settings resetGame={resetGame} board={board} configureGame={configureGame}/>
             </div>
         </div>
     );

@@ -22,7 +22,7 @@ export default function BoardCell(props) {
         backgroundColor: cellColor,
         height: '100%',
         width: '100%',
-        borderRadius: '50px',
+        borderRadius: '50%',
         '&:hover': {
             width: '1000px',
             cursor: 'pointer',
