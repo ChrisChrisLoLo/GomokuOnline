@@ -5,6 +5,7 @@ import Score from "./Score";
 import Message from "./Message";
 import Settings from "./Settings";
 import gameStyle from './Game.module.css'
+import { Button } from "reactstrap";
 
 const WHITE = 'W';
 const BLACK = 'B';
@@ -27,6 +28,9 @@ export default function Game() {
     const [board, setBoard] = useState(generateBoardArray(15));
     // turn number (used for rules and even for history recording). Starts at 0
     const [turnNumber, setTurnNumber] = useState(0);
+    
+    //if new game button is visible or not (only visible when game ends)
+    const [newGameBtn, setNewGameBtn] = useState(false);
 
     /**
      * Configures the game according to the selected gameMode.
@@ -79,10 +83,12 @@ export default function Game() {
                 if (playingColor === BLACK) {
                     setBlackScore(blackScore + 1);
                     sendPrompt('Black wins!');
+                    setNewGameBtn(!newGameBtn);
                 }
                 else {
                     setWhiteScore(whiteScore + 1);
                     sendPrompt('White wins!');
+                    setNewGameBtn(!newGameBtn);
                 }
                 resetGame(newBoard.length);
             }
@@ -224,6 +230,13 @@ export default function Game() {
     function sendPrompt(message) {
         console.log(message);
         setMessage(message);
+
+        if(message.includes("Black wins") || message.includes("White wins")) return;
+        
+        setTimeout(() => {
+            setMessage(""); //clear message after 3 seconds
+        }, 3000)
+            
     }
 
     return (
@@ -231,6 +244,7 @@ export default function Game() {
             <div className={gameStyle.sidePanel}>
                 <Score blackScore={blackScore} whiteScore={whiteScore} playingColor={playingColor} />
                 <Message message={message} />
+                <Button color="success" hidden={!newGameBtn} onClick={() => {setNewGameBtn(!newGameBtn); setMessage("")}}>New Game</Button>
             </div>
 
             <Board board={board} playMove={playMove} playingColor={playingColor}/>
