@@ -5,6 +5,7 @@ import Score from "./Score";
 import Message from "./Message";
 import Settings from "./Settings";
 import gameStyle from './Game.module.css'
+import { Button } from "reactstrap";
 
 const WHITE = 'W';
 const BLACK = 'B';
@@ -16,7 +17,7 @@ export default function Game() {
     // Game config
     const [winningPieceCount, setWinningPieceCount] = useState(5);
     // const [boardSize, setBoardSize] = useState(15);
-    const [isOverlineAllowed, setIsOverlineAllowed] = useState( true);
+    const [isOverlineAllowed, setIsOverlineAllowed] = useState(true);
     const [rules, setRules] = useState([]);
     // Game state
     const [blackScore, setBlackScore] = useState(0);
@@ -27,6 +28,12 @@ export default function Game() {
     const [board, setBoard] = useState(generateBoardArray(15));
     // turn number (used for rules and even for history recording). Starts at 0
     const [turnNumber, setTurnNumber] = useState(0);
+    
+    //if new game button is visible or not (only visible when game ends)
+    const [newGameBtn, showNewGameBtn] = useState(false);
+
+    //if board is playable
+    const [playable, setPlayable] = useState(true);
 
     /**
      * Configures the game according to the selected gameMode.
@@ -84,11 +91,13 @@ export default function Game() {
                     setWhiteScore(whiteScore + 1);
                     sendPrompt('White wins!');
                 }
-                resetGame(newBoard.length);
+                showNewGameBtn(true);
+                setPlayable(false);
             }
             else if (isDraw(newBoard)){
                 sendPrompt('It\'s a draw!');
-                resetGame(newBoard.length);
+                showNewGameBtn(true);
+                setPlayable(false);
             }
             else {
                 setPlayingColor(playingColor === BLACK ? WHITE : BLACK);
@@ -224,6 +233,24 @@ export default function Game() {
     function sendPrompt(message) {
         console.log(message);
         setMessage(message);
+
+        if(message.includes("Black wins") || message.includes("White wins")) return;
+        
+        setTimeout(() => {
+            setMessage(""); //clear message after 3 seconds
+        }, 3000)
+            
+    }
+
+    /**
+     * When new game is clicked the board will be reset and hide new game btn again
+    */
+    function onNewGame(){
+        let newBoard = copyBoard(board);
+        resetGame(newBoard.length);
+        setMessage(""); //clear message
+        showNewGameBtn(false); //hide game btn
+        setPlayable(true); //make game playable again
     }
 
     return (
@@ -231,9 +258,10 @@ export default function Game() {
             <div className={gameStyle.sidePanel}>
                 <Score blackScore={blackScore} whiteScore={whiteScore} playingColor={playingColor} />
                 <Message message={message} />
+                <Button color="success" hidden={!newGameBtn} onClick={onNewGame} style={{marginLeft: "15px"}}>New Game</Button>
             </div>
 
-            <Board board={board} playMove={playMove} playingColor={playingColor}/>
+            <Board board={board} playMove={playMove} playingColor={playingColor} playable={playable}/>
             
             <div className={gameStyle.sidePanel}>
                 <Settings resetGame={resetGame} board={board} configureGame={configureGame}/>
