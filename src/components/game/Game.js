@@ -254,7 +254,7 @@ export default function Game() {
     }
 
     return (
-        <div>
+        <div className={gameStyle.gameCont}>
             <div className={gameStyle.sidePanel}>
                 <Score blackScore={blackScore} whiteScore={whiteScore} playingColor={playingColor} />
                 <Message message={message} />

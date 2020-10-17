@@ -4,3 +4,41 @@
     padding: 10px;
     height: 100%;
 }
+
+.gameCont{
+    display: flex;
+}
+
+/* REORDERING 
+max-width contains the size of the screen
+check screen size of chrome by right click and "Inspect"
+*/
+@media only screen and (max-width: 1045px) {
+    .gameCont{
+        flex-direction: column;
+    }
+
+    .gameCont > div:nth-child(1){
+        order: 2;
+        margin: 0 auto;
+    }
+
+    .gameCont > div:nth-child(2){
+        order: 1;
+        width: 60vw !important;
+        height: 60vw !important;
+        margin: 0 auto;
+    }
+
+    .gameCont > div:nth-child(3){
+        order: 3;
+        margin: 0 auto;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    .gameCont > div:nth-child(2){
+        width: 80vw !important;
+        height: 80vw !important;
+    }
+}
