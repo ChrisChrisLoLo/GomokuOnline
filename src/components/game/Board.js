@@ -4,7 +4,7 @@ import BoardCell from "./BoardCell";
 // board, setBoard
 export default function Board(props) {
 
-    const boardStyle = {
+    var boardStyle = {
         display: 'grid',
         gridTemplateColumns: `repeat(${props.board.length}, 1fr)`,
         gridTemplateRows: `repeat(${props.board.length}, 1fr)`,
@@ -12,7 +12,8 @@ export default function Board(props) {
         backgroundColor: 'goldenrod',
         height: '50vw',
         width: '50vw',
-        float: 'left'
+        float: 'left',
+        pointerEvents: props.playable ? "auto" : "none",
     };
 
     const grid = [];
