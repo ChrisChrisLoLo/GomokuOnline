@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import boardCellStyle from './BoardCell.module.css';
 
 export default function BoardCell(props) {
@@ -16,7 +16,7 @@ export default function BoardCell(props) {
             break;
         case ' ':
             cellColor = 'goldenrod';
-            className = [boardCellStyle.cross];
+            className = [props.emptyCellStyle];
             break;
         default:
             console.error('invalid board color')
@@ -33,17 +33,17 @@ export default function BoardCell(props) {
         },
     };
 
-    if (isHovered && props.color === ' '){
+    if (isHovered && props.color === ' ') {
         cellStyle.backgroundColor = props.playingColor === 'B' ? 'black' : 'white';
         cellStyle.opacity = 0.7;
     }
 
     return (
         <div className={className}
-             style={cellStyle}
-             onClick={() => { props.playMove(props.i, props.j) }}
-             onMouseEnter={() => setIsHovered(true)}
-             onMouseLeave={() => setIsHovered(false)}
+            style={cellStyle}
+            onClick={() => { props.playMove(props.i, props.j) }}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
         >
         </div>
     );
