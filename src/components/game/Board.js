@@ -11,8 +11,8 @@ export default function Board(props) {
         gridTemplateRows: `repeat(${props.board.length}, 1fr)`,
         gridGap: 0,
         backgroundColor: 'goldenrod',
-        height: '50vw',
-        width: '50vw',
+        height: '924.5px',
+        width: '924.5px',
         float: 'left',
         pointerEvents: props.playable ? "auto" : "none",
         boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'

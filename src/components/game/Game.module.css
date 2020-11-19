@@ -1,6 +1,13 @@
 .sidePanel {
     float: left;
-    width: 25%;
-    padding: 10px;
+    width: auto;
+    margin-top: 10px;
+    margin-left: 80px;
+    margin-right: 80px;
     height: 100%;
+}
+
+.center{
+    margin: 0 auto;
+    display: table;
 }
