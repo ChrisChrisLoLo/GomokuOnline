@@ -5,12 +5,12 @@ import { gameModes } from "../../logic/gameModes";
 
 export default function Settings(props) {
     let options = [];
-    for (let gameModeName in gameModes){
+    for (let gameModeName in gameModes) {
         options.push(<option key={gameModeName}>{gameModeName}</option>)
     }
 
-    function handleChange(e){
-        props.configureGame(gameModes[e.target.value]);
+    function handleChange(e) {
+        props.configureGame(e.target.value, gameModes[e.target.value]);
     }
 
     return (

@@ -19,6 +19,7 @@ export default function Game() {
     // const [boardSize, setBoardSize] = useState(15);
     const [isOverlineAllowed, setIsOverlineAllowed] = useState(true);
     const [rules, setRules] = useState([]);
+    const [gameMode, setGameMode] = useState('Connect Five 15x15');
     // Game state
     const [blackScore, setBlackScore] = useState(0);
     const [whiteScore, setWhiteScore] = useState(0);
@@ -28,7 +29,7 @@ export default function Game() {
     const [board, setBoard] = useState(generateBoardArray(15));
     // turn number (used for rules and even for history recording). Starts at 0
     const [turnNumber, setTurnNumber] = useState(0);
-    
+
     //if new game button is visible or not (only visible when game ends)
     const [newGameBtn, showNewGameBtn] = useState(false);
 
@@ -38,13 +39,14 @@ export default function Game() {
     /**
      * Configures the game according to the selected gameMode.
      * gameMode JSON schema can be found in logic/gameModes.js
-     * @param gameMode the passed in gameMode JSON object
+     * @param gameModeSettings the passed in gameMode JSON object
      */
-    function configureGame(gameMode) {
-        setRules(gameMode.rules);
-        setIsOverlineAllowed(gameMode.isOverlineAllowed);
-        setWinningPieceCount(gameMode.winningPieceCount);
-        resetGame(gameMode.boardSize);
+    function configureGame(gameMode, gameModeSettings) {
+        setGameMode(gameMode);
+        setRules(gameModeSettings.rules);
+        setIsOverlineAllowed(gameModeSettings.isOverlineAllowed);
+        setWinningPieceCount(gameModeSettings.winningPieceCount);
+        resetGame(gameModeSettings.boardSize);
     }
 
     /**
@@ -94,7 +96,7 @@ export default function Game() {
                 showNewGameBtn(true);
                 setPlayable(false);
             }
-            else if (isDraw(newBoard)){
+            else if (isDraw(newBoard)) {
                 sendPrompt('It\'s a draw!');
                 showNewGameBtn(true);
                 setPlayable(false);
@@ -111,11 +113,11 @@ export default function Game() {
      * Checks if the board is in a draw state (no more empty pieces)
      * @param board
      */
-    function isDraw(board){
+    function isDraw(board) {
         let isBoardFilled = true;
-        for (let i = 0; i < board.length; i++){
-            for (let j = 0; j < board.length; j++){
-                if (board[i][j] === EMPTY){
+        for (let i = 0; i < board.length; i++) {
+            for (let j = 0; j < board.length; j++) {
+                if (board[i][j] === EMPTY) {
                     isBoardFilled = false;
                 }
             }
@@ -234,18 +236,18 @@ export default function Game() {
         console.log(message);
         setMessage(message);
 
-        if(message.includes("Black wins") || message.includes("White wins")) return;
-        
+        if (message.includes("Black wins") || message.includes("White wins")) return;
+
         setTimeout(() => {
             setMessage(""); //clear message after 3 seconds
         }, 3000)
-            
+
     }
 
     /**
      * When new game is clicked the board will be reset and hide new game btn again
     */
-    function onNewGame(){
+    function onNewGame() {
         let newBoard = copyBoard(board);
         resetGame(newBoard.length);
         setMessage(""); //clear message
@@ -258,13 +260,18 @@ export default function Game() {
             <div className={gameStyle.sidePanel}>
                 <Score blackScore={blackScore} whiteScore={whiteScore} playingColor={playingColor} />
                 <Message message={message} />
-                <Button color="success" hidden={!newGameBtn} onClick={onNewGame} style={{marginLeft: "15px"}}>New Game</Button>
+                <Button color="success" hidden={!newGameBtn} onClick={onNewGame} style={{ marginLeft: "15px" }}>New Game</Button>
             </div>
 
-            <Board board={board} playMove={playMove} playingColor={playingColor} playable={playable}/>
-            
+            <Board
+                board={board}
+                playMove={playMove}
+                playingColor={playingColor}
+                playable={playable}
+                gameMode={gameMode} />
+
             <div className={gameStyle.sidePanel}>
-                <Settings resetGame={resetGame} board={board} configureGame={configureGame}/>
+                <Settings resetGame={resetGame} board={board} configureGame={configureGame} />
             </div>
         </div>
     );
