@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/GomokuOnline/static/css/main.681a6456.chunk.css",
+    "main.js": "/GomokuOnline/static/js/main.2a9b1021.chunk.js",
+    "main.js.map": "/GomokuOnline/static/js/main.2a9b1021.chunk.js.map",
+    "runtime-main.js": "/GomokuOnline/static/js/runtime-main.0c97c4f7.js",
+    "runtime-main.js.map": "/GomokuOnline/static/js/runtime-main.0c97c4f7.js.map",
+    "static/css/2.d9ad5f5c.chunk.css": "/GomokuOnline/static/css/2.d9ad5f5c.chunk.css",
+    "static/js/2.09cbc09d.chunk.js": "/GomokuOnline/static/js/2.09cbc09d.chunk.js",
+    "static/js/2.09cbc09d.chunk.js.map": "/GomokuOnline/static/js/2.09cbc09d.chunk.js.map",
+    "index.html": "/GomokuOnline/index.html",
+    "precache-manifest.cde6d6aec701b375dc315cde5e237933.js": "/GomokuOnline/precache-manifest.cde6d6aec701b375dc315cde5e237933.js",
+    "service-worker.js": "/GomokuOnline/service-worker.js",
+    "static/css/2.d9ad5f5c.chunk.css.map": "/GomokuOnline/static/css/2.d9ad5f5c.chunk.css.map",
+    "static/css/main.681a6456.chunk.css.map": "/GomokuOnline/static/css/main.681a6456.chunk.css.map",
+    "static/js/2.09cbc09d.chunk.js.LICENSE.txt": "/GomokuOnline/static/js/2.09cbc09d.chunk.js.LICENSE.txt",
+    "static/media/black.svg": "/GomokuOnline/static/media/black.d46edd4e.svg",
+    "static/media/white.svg": "/GomokuOnline/static/media/white.c7808d18.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.0c97c4f7.js",
+    "static/css/2.d9ad5f5c.chunk.css",
+    "static/js/2.09cbc09d.chunk.js",
+    "static/css/main.681a6456.chunk.css",
+    "static/js/main.2a9b1021.chunk.js"
+  ]
+}
