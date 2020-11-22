@@ -3,8 +3,8 @@ import messageStyle from './Message.module.css';
 
 export default function Message(props) {
     return (
-        <div className={messageStyle.messageBox}>
-            <h4 className={messageStyle.message}>
+        <div>
+            <h4>
                 {props.message}
             </h4>
         </div>

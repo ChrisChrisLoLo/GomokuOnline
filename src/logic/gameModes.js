@@ -29,24 +29,24 @@ export let gameModes = {
         'isOverlineAllowed': false,
         'winningPieceCount':5,
     },
-    'Japanese Go-moku':{
-        'rules':[],
-        'boardSize': 19,
-        'isOverlineAllowed': false,
-        'winningPieceCount':5,
-    },
-    'Korean O-muk':{
-        'rules':[],
-        'boardSize': 19,
-        'isOverlineAllowed': false,
-        'winningPieceCount':5,
-    },
-    'Pro-Go-Moku':{
-        'rules':[],
-        'boardSize': 15,
-        'isOverlineAllowed': false,
-        'winningPieceCount':5,
-    },
+    // 'Japanese Go-moku':{
+    //     'rules':[],
+    //     'boardSize': 19,
+    //     'isOverlineAllowed': false,
+    //     'winningPieceCount':5,
+    // },
+    // 'Korean O-muk':{
+    //     'rules':[],
+    //     'boardSize': 19,
+    //     'isOverlineAllowed': false,
+    //     'winningPieceCount':5,
+    // },
+    // 'Pro-Go-Moku':{
+    //     'rules':[],
+    //     'boardSize': 15,
+    //     'isOverlineAllowed': false,
+    //     'winningPieceCount':5,
+    // },
     'Tic Tac Toe':{
         'rules':[],
         'boardSize': 3,

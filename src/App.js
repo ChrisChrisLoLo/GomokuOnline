@@ -5,7 +5,7 @@ import gameStyle from './components/game/Game.module.css'
 
 function App() {
     return (
-        <div className={gameStyle.center}>
+        <div>
             <h3 style={{ textAlign: 'center' }}>
                 Gomoku Online
             </h3>

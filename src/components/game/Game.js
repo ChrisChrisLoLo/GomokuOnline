@@ -5,7 +5,8 @@ import Score from "./Score";
 import Message from "./Message";
 import Settings from "./Settings";
 import gameStyle from './Game.module.css'
-import { Button } from "reactstrap";
+import { Button, Container, Row, Col } from "reactstrap";
+
 
 const WHITE = 'W';
 const BLACK = 'B';
@@ -256,24 +257,26 @@ export default function Game() {
     }
 
     return (
-        <div>
-            <div className={gameStyle.sidePanel}>
-                <Score blackScore={blackScore} whiteScore={whiteScore} playingColor={playingColor} />
-                <Message message={message} />
-                <Button color="success" hidden={!newGameBtn} onClick={onNewGame} style={{ marginLeft: "15px" }}>New Game</Button>
-            </div>
-
-            <Board
-                board={board}
-                playMove={playMove}
-                playingColor={playingColor}
-                playable={playable}
-                gameMode={gameMode} />
-
-            <div className={gameStyle.sidePanel}>
-                <Settings resetGame={resetGame} board={board} configureGame={configureGame} />
-            </div>
-        </div>
+        <Container>
+            <Row>
+                <Col>
+                    <Score blackScore={blackScore} whiteScore={whiteScore} playingColor={playingColor} />
+                    <Message message={message} />
+                    <Button color="success" hidden={!newGameBtn} onClick={onNewGame} style={{ marginLeft: "15px" }}>New Game</Button>
+                </Col>
+                <Col>
+                    <Board
+                        board={board}
+                        playMove={playMove}
+                        playingColor={playingColor}
+                        playable={playable}
+                        gameMode={gameMode} />
+                </Col>
+                <Col>
+                    <Settings resetGame={resetGame} board={board} configureGame={configureGame} />
+                </Col>
+            </Row>
+        </Container>
     );
 }
 
