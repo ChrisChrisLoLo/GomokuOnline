@@ -273,7 +273,7 @@ export default function Game() {
                         gameMode={gameMode} />
                 </Col>
                 <Col>
-                    <Settings resetGame={resetGame} board={board} configureGame={configureGame} />
+                    <Settings resetGame={resetGame} board={board} configureGame={configureGame} gameMode={gameMode}/>
                 </Col>
             </Row>
         </Container>
