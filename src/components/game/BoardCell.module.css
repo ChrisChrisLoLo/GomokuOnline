@@ -44,16 +44,16 @@
  left: 50%;
  width: 3%;
  margin-left: -2%;
- margin-top: 48%;
- height: 100%;
+ margin-top: 50%;
+ height: 50%;
 }
 
 .topLeftCorner:after {
  top: 50%;
  height: 3%;
  margin-top: -2%;
- margin-left: 48%;
- width: 100%;
+ margin-left: 49%;
+ width: 50%;
 }
 
 .topRow {
@@ -72,8 +72,8 @@
  left: 50%;
  width: 3%;
  margin-left: -2%;
- margin-top: 48%;
- height: 100%;
+ margin-top: 50%;
+ height: 50%;
 }
 
 .topRow:after {
@@ -99,8 +99,7 @@
  left: 50%;
  width: 3%;
  margin-left: -2%;
- margin-top: -49%;
- height: 100%;
+ height: 50%;
 }
 
 .bottomRow:after {
@@ -126,16 +125,15 @@
   left: 50%;
   width: 3%;
   margin-left: -2%;
-  margin-top: 48%;
-  height: 100%;
+  margin-top: 50%;
+  height: 50%;
 }
 
 .topRightCorner:after {
  top: 50%;
  height: 3%;
  margin-top: -2%;
- margin-left: -48%;
- width: 100%;
+ width: 50%;
 }
 
 .bottomLeftCorner {
@@ -154,16 +152,15 @@
   left: 50%;
   width: 3%;
   margin-left: -2%;
-  margin-top: -49%;
-  height: 100%;
+  height: 50%;
 }
 
 .bottomLeftCorner:after {
  top: 50%;
  height: 3%;
  margin-top: -2%;
- margin-left: 48%;
- width: 100%;
+ margin-left: 50%;
+ width: 50%;
 }
 
 .bottomRightCorner {
@@ -182,16 +179,14 @@
   left: 50%;
   width: 3%;
   margin-left: -2%;
-  margin-top: -49%;
-  height: 100%;
+  height: 50%;
 }
 
 .bottomRightCorner:after {
  top: 50%;
  height: 3%;
  margin-top: -2%;
- margin-left: -49%;
- width: 100%;
+ width: 50%;
 }
 
 .firstColumn {
@@ -217,8 +212,8 @@
  top: 50%;
  height: 3%;
  margin-top: -2%;
- margin-left: 48%;
- width: 100%;
+ margin-left: 50%;
+ width: 50%;
 }
 
 .lastColumn {
@@ -244,6 +239,5 @@
  top: 50%;
  height: 3%;
  margin-top: -2%;
- margin-left: -49%;
- width: 100%;
+ width: 50%;
 }
