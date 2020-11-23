@@ -69,14 +69,6 @@ export default function Game() {
      */
     function playMove(i, j) {
         console.log(`Turn ${turnNumber}: ${playingColor}'s move`);
-        
-        // get history
-        let oldHistory = history;
-
-        // add to history
-        history.push({i, j, player: playingColor});
-        setHistory(history);
-
 
         let newBoard = copyBoard(board);
         if (newBoard[i][j] !== EMPTY) {
@@ -90,6 +82,10 @@ export default function Game() {
             return -1;
         }
         else {
+            // add to history
+            history.push({i, j, player: playingColor});
+            setHistory(history);
+
             setBoard(newBoard);
             setMessage('');
 
@@ -265,7 +261,7 @@ export default function Game() {
 
         // new board state
         let newBoard = copyBoard(board);
-        
+
         // set location to empty
         newBoard[i][j] = EMPTY;
 
