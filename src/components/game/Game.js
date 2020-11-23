@@ -37,6 +37,9 @@ export default function Game() {
     //if board is playable
     const [playable, setPlayable] = useState(true);
 
+    // this will hold the history of moves
+    const [history, setHistory] = useState([]);
+
     /**
      * Configures the game according to the selected gameMode.
      * gameMode JSON schema can be found in logic/gameModes.js
@@ -66,6 +69,15 @@ export default function Game() {
      */
     function playMove(i, j) {
         console.log(`Turn ${turnNumber}: ${playingColor}'s move`);
+        
+        // get history
+        let oldHistory = history;
+
+        // add to history
+        history.push({i, j, player: playingColor});
+        setHistory(history);
+
+
         let newBoard = copyBoard(board);
         if (newBoard[i][j] !== EMPTY) {
             sendPrompt('Cannot place your piece where one already exists!');
@@ -246,6 +258,25 @@ export default function Game() {
     }
 
     /**
+     * This will undo the current move by reloading the previous move
+     */
+    function undo() {
+        let { i, j, player } = history.pop();
+
+        // new board state
+        let newBoard = copyBoard(board);
+        
+        // set location to empty
+        newBoard[i][j] = EMPTY;
+
+        // set board to new board
+        setBoard(newBoard);
+
+        // set player to previous player
+        setPlayingColor(player);
+    }
+
+    /**
      * When new game is clicked the board will be reset and hide new game btn again
     */
     function onNewGame() {
@@ -254,6 +285,7 @@ export default function Game() {
         setMessage(""); //clear message
         showNewGameBtn(false); //hide game btn
         setPlayable(true); //make game playable again
+        setHistory([]); //clear history on new game
     }
 
     return (
@@ -263,6 +295,8 @@ export default function Game() {
                     <Score blackScore={blackScore} whiteScore={whiteScore} playingColor={playingColor} />
                     <Message message={message} />
                     <Button color="success" hidden={!newGameBtn} onClick={onNewGame} style={{ marginLeft: "15px" }}>New Game</Button>
+
+                    <Button color="info" hidden={newGameBtn || !turnNumber || !history.length} onClick={undo}  style={{ marginLeft: "15px" }}>Undo</Button>
                 </Col>
                 <Col>
                     <Board
