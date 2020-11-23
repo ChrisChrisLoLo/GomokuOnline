@@ -1,16 +1,4 @@
 export let gameModes = {
-    'Connect Five 15x15': {
-        'rules':[],
-        'boardSize':15,
-        'isOverlineAllowed':true,
-        'winningPieceCount':5,
-    },
-    'Connect Five 19x19': {
-        'rules':[],
-        'boardSize':19,
-        'isOverlineAllowed':true,
-        'winningPieceCount':5,
-    },
     'Go-moku 13x13': {
         'rules':[],
         'boardSize':13,
@@ -27,6 +15,18 @@ export let gameModes = {
         'rules': [],
         'boardSize': 19,
         'isOverlineAllowed': false,
+        'winningPieceCount':5,
+    },
+    'Connect Five 15x15': {
+        'rules':[],
+        'boardSize':15,
+        'isOverlineAllowed':true,
+        'winningPieceCount':5,
+    },
+    'Connect Five 19x19': {
+        'rules':[],
+        'boardSize':19,
+        'isOverlineAllowed':true,
         'winningPieceCount':5,
     },
     // 'Japanese Go-moku':{

@@ -20,7 +20,7 @@ export default function Game() {
     // const [boardSize, setBoardSize] = useState(15);
     const [isOverlineAllowed, setIsOverlineAllowed] = useState(true);
     const [rules, setRules] = useState([]);
-    const [gameMode, setGameMode] = useState('Connect Five 15x15');
+    const [gameMode, setGameMode] = useState('Go-moku 13x13');
     // Game state
     const [blackScore, setBlackScore] = useState(0);
     const [whiteScore, setWhiteScore] = useState(0);
