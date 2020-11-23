@@ -18,7 +18,7 @@ export default function Game() {
     // Game config
     const [winningPieceCount, setWinningPieceCount] = useState(5);
     // const [boardSize, setBoardSize] = useState(15);
-    const [isOverlineAllowed, setIsOverlineAllowed] = useState(true);
+    const [isOverlineAllowed, setIsOverlineAllowed] = useState(false);
     const [rules, setRules] = useState([]);
     const [gameMode, setGameMode] = useState('Go-moku 13x13');
     // Game state
@@ -27,7 +27,7 @@ export default function Game() {
     const [playingColor, setPlayingColor] = useState(BLACK);
     // used to communicate information to player
     const [message, setMessage] = useState('');
-    const [board, setBoard] = useState(generateBoardArray(15));
+    const [board, setBoard] = useState(generateBoardArray(13));
     // turn number (used for rules and even for history recording). Starts at 0
     const [turnNumber, setTurnNumber] = useState(0);
 
